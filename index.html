@@ -12,7 +12,45 @@
 </head>
 
 <body>
-    <h1>Does This Work?</h1>
+    <div class="container my-5">
+        <h1 class="title text-center">Weather In</h1>
+
+        <form class="search-location">
+            <input type="text" name="city" placeholder="What City?"
+                class="form-control text-muted form-rounded p-4 shadow-sm" autocomplete="off">
+        </form>
+
+        <div class="card rounded my-3 shadow-lg back-card">
+            <div class="card-top text-center">
+                <div class="city-name my-3">
+                    <p>Delhi</p>
+                    <span>...</span>
+                </div>
+                <img src="./img/night_image.svg" alt="Image of night">
+            </div>
+
+            <div class="card-body">
+                <div class="card-mid row">
+                    <div class="col-8 text-center temp">
+                        <span>30&deg;C</span>
+                    </div>
+                    <div class="col-4 condition-temp">
+                        <p>Thuder Storm</p>
+                        <p>30&deg;C</p>
+                        <p>27&deg;C</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="icon-container card shadow mx-auto">
+                <img src="./img/cloud.svg" alt="This is an image of a cloud">
+            </div>
+
+            <div class="card-bottom px-5 py-4 row">
+                
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
