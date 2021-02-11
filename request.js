@@ -1,4 +1,4 @@
-const key = 'cbe3dd267a18f6c89943b3eff94f1ed7';
+const key = '742d0d55c1e804634de91bc91d192e0a';
 
 // const baseURL = 'http://api.lopenweathermap.org/data/2.5/weather?q=Lagos&appid=cbe3dd267a18f6c89943b3eff94f1ed7';
 
