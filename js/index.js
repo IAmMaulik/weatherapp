@@ -1,24 +1,36 @@
-const searchForm = document.querySelector('.search-loaction');
-const cityValue = document.querySelector('.search-loaction input');
-const cityName = document.querySelector('.city-name p');
-const cardBody = document.querySelector('.card-body');
-const timeImage = document.querySelector('.card-top img');
-const cardInfo = document.querySelector('.back-card');
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("/serviceWorker.js")
+      .then((res) => console.log("service worker registered"))
+      .catch((err) => console.log("service worker not registered", err));
+  });
+}
+
+const searchForm = document.querySelector(".search-loaction");
+const cityValue = document.querySelector(".search-loaction input");
+const cityName = document.querySelector(".city-name p");
+const cardBody = document.querySelector(".card-body");
+const timeImage = document.querySelector(".card-top img");
+const cardInfo = document.querySelector(".back-card");
 
 const spitOutCelcius = (kelvin) => {
-    celcius = Math.round(kelvin - 273.15);
-    return celcius;
-}
+  celcius = Math.round(kelvin - 273.15);
+  return celcius;
+};
 const isDayTime = (icon) => {
-    if (icon.includes('d')) { return true }
-    else { return false }
-}
+  if (icon.includes("d")) {
+    return true;
+  } else {
+    return false;
+  }
+};
 updateWeatherApp = (city) => {
-    console.log(city);
-    const imageName = city.weather[0].icon;
-    const iconSrc = `http://openweathermap.org/img/wn/${imageName}@2x.png`
-    cityName.textContent = city.name;
-    cardBody.innerHTML = `
+  console.log(city);
+  const imageName = city.weather[0].icon;
+  const iconSrc = `http://openweathermap.org/img/wn/${imageName}@2x.png`;
+  cityName.textContent = city.name;
+  cardBody.innerHTML = `
     <div class="card-mid row">
             <div class="col-8 text-center temp">
               <span>${spitOutCelcius(city.main.temp)}&deg;C</span>
@@ -44,44 +56,39 @@ updateWeatherApp = (city) => {
             </div>
           </div>
     `;
-    if (isDayTime(imageName)) {
-        console.log('day');
-        timeImage.setAttribute('src', 'img/day_image.svg');
-        if (cityName.classList.contains('text-white')) {
-            cityName.classList.remove('text-white');
-        } else {
-            cityName.classList.add('text-black');
-        }
-
+  if (isDayTime(imageName)) {
+    console.log("day");
+    timeImage.setAttribute("src", "img/day_image.svg");
+    if (cityName.classList.contains("text-white")) {
+      cityName.classList.remove("text-white");
     } else {
-        console.log('night');
-        timeImage.setAttribute('src', 'img/night_image.svg');
-        if (cityName.classList.contains('text-black')) {
-            cityName.classList.remove('text-black');
-        } else {
-            cityName.classList.add('text-white');
-        }
-
+      cityName.classList.add("text-black");
     }
+  } else {
+    console.log("night");
+    timeImage.setAttribute("src", "img/night_image.svg");
+    if (cityName.classList.contains("text-black")) {
+      cityName.classList.remove("text-black");
+    } else {
+      cityName.classList.add("text-white");
+    }
+  }
 
-    cardInfo.classList.remove('d-none');
-}
-
-
+  cardInfo.classList.remove("d-none");
+};
 
 //add an event listner to the form
-searchForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const citySearched = cityValue.value.trim();
-    console.log(citySearched);
-    searchForm.reset();
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const citySearched = cityValue.value.trim();
+  console.log(citySearched);
+  searchForm.reset();
 
-    requestCity(citySearched)
-        .then((data) => {
-            updateWeatherApp(data);
-        })
-        .catch((error) => { console.log(error) })
-
-
-
-})
+  requestCity(citySearched)
+    .then((data) => {
+      updateWeatherApp(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
