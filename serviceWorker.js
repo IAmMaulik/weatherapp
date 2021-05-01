@@ -7,6 +7,7 @@ const assets = [
   "/js/request.js",
   "/img/cloud.svg",
   "/img/day_image.svg",
+  "/img/down.svg",
   "/img/favicon.svg",
   "/img/night_image.svg",
   "/img/up.svg",
@@ -20,10 +21,10 @@ self.addEventListener("install", (installEvent) => {
   );
 });
 
-self.addEventListener("fetch", fetchEvent => {
-    fetchEvent.respondWith(
-      caches.match(fetchEvent.request).then(res => {
-        return res || fetch(fetchEvent.request)
-      })
-    )
-  })
+self.addEventListener("fetch", (fetchEvent) => {
+  fetchEvent.respondWith(
+    caches.match(fetchEvent.request).then((res) => {
+      return res || fetch(fetchEvent.request);
+    })
+  );
+});
