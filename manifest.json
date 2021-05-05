@@ -9,7 +9,6 @@
   "icons": [
     {
       "src": "/img/favicon.svg",
-      "type": "image/svg",
       "sizes": "512x512"
     }
   ]
